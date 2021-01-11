@@ -4,14 +4,14 @@ import Restaurant from './components/Restaurant';
 
 function App() {
 
-	const [restaurant, setRest] = useState([]);
+	const [restaurant, setRestaurant] = useState([]);  //hook state useState: the current state and a fun that can be used to update the state
 	const [id, setId] = useState();	
-	const [search, setSearch] = useState("");
-	const [query, setQuery] = useState([0, ""])
+	const [search, setSearch] = useState(""); 
+	const [query, setQuery] = useState([0, ""]) 
 	
 	useEffect(() => {
 		getRestaurants();
-	}, [query]);
+	}, [query]); 
 	
 	const getRestaurants = async () => {
 		if(!(query[0] === 0 && query[1] === "")){
@@ -21,12 +21,12 @@ function App() {
 					method: 'GET',
 					headers: {
 						Accept: 'application/json',
-						'user-key': '2ad63f94902019632381f2df301a60cc'
+						'user-key': '85814b0e8e640d98c4e1452f970dd480'
 					}
 				}
 			);
 			const data = await response.json();
-			setRest(data.restaurants);
+			setRestaurant(data.restaurants);
 		}
 	};
 	
@@ -47,12 +47,12 @@ function App() {
 	    <div className="App">
 	  		<div className="jumbotron">
 	  			<div className="logo">FooDie</div>
-	  			<h1>Find the best Restaurants in your city</h1>
+	  			<h1>Find the best Restaurants in Italy</h1>
 				<form className="searchBar"  onSubmit={getSearch}>
 					<div>
 						<select id="select_id" className="city form-control" onChange={updateID}>
 		  					<option value="0" hidden>Select City</option>
-		  					<option value="4">Bengaluru</option>
+		  					<option value="4">Rome</option>
 		  					<option value="3" >Mumbai</option>
 		  					<option value="1">Delhi</option>
 		  					<option value="6">Hyderabad</option>
