@@ -15,7 +15,7 @@ function App() {
 	
 	const getRestaurants = async () => {
 		if(!(query[0] === 0 && query[1] === "")){
-			const response = await fetch(
+			const response = await fetch( //send network requests to the server and load new information whenever it’s needed, without reloading the browser.
 				`https://developers.zomato.com/api/v2.1/search?entity_id=${query[0]}&entity_type=city&q=${query[1]}&count=100`, 
 				{
 					method: 'GET',
@@ -25,7 +25,7 @@ function App() {
 					}
 				}
 			);
-			const data = await response.json();
+			const data = await response.json(); //waits for the promise
 			setRestaurant(data.restaurants);
 		}
 	};
@@ -38,7 +38,7 @@ function App() {
 		setSearch(e.target.value);
 	}
 	
-	const getSearch = e => {
+	const getSearch = e => { 
 		e.preventDefault();
 		setQuery([id, search])
 	}
@@ -47,12 +47,12 @@ function App() {
 	    <div className="App">
 	  		<div className="jumbotron">
 	  			<div className="logo">FooDie</div>
-	  			<h1>Find the best Restaurants in Italy</h1>
+	  			<h1>Find the best Restaurants in India</h1>
 				<form className="searchBar"  onSubmit={getSearch}>
 					<div>
 						<select id="select_id" className="city form-control" onChange={updateID}>
 		  					<option value="0" hidden>Select City</option>
-		  					<option value="4">Rome</option>
+		  					<option value="4">Bourda</option>
 		  					<option value="3" >Mumbai</option>
 		  					<option value="1">Delhi</option>
 		  					<option value="6">Hyderabad</option>
